@@ -24,7 +24,7 @@ const FadeIn: Component<FadeInProps> = (props) => {
   const hour = now.getHours();
   const minute = now.getMinutes();
   // Wave duration will range from 1s to 10s based on time of day
-  const WAVE_DURATION = props.waveDuration || Math.max(1000, ((hour * 60 + minute) % 150) * 60);
+  const WAVE_DURATION = Math.max(1000, ((hour * 60 + minute) % 150) * 60);
 
   let debounceTimeout: number | undefined;
 

@@ -16,6 +16,9 @@
       "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+	background-color: #141414;
+	/* ToDo: REMOVE THE LINE BELOW WHEN YOU DO SOMETHING REAL WITH THE SITE 🤣🤣 */
+	overflow: hidden; 
   }
 
   code {

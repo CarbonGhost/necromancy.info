@@ -18,6 +18,13 @@ const FadeIn: Component<FadeInProps> = (props) => {
   const DEBOUNCE_DELAY = 250;
   const staggerDelay = props.staggerDelay || 50;
   const scaleStart = props.scaleStart || 0.5;
+  
+  // The wave period is based on the time of day because why the hell not 🔥
+  const now = new Date();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  // Wave duration will range from 1s to 10s based on time of day
+  const WAVE_DURATION = props.waveDuration || Math.max(1000, ((hour * 60 + minute) % 150) * 60);
 
   let debounceTimeout: number | undefined;
 
@@ -58,7 +65,7 @@ const FadeIn: Component<FadeInProps> = (props) => {
   });
 
   return (
-    <div class="transition-all duration-1000 ease-out rounded-lg overflow-hidden bg-green-800 border-8 border-green-900">
+    <div class="transition-all duration-1000 ease-out rounded-lg overflow-hidden bg-emerald-950 border-8 border-emerald-900">
       <div 
         class={`grid gap-0 transition-opacity duration-200 ${isResizing() ? 'opacity-0' : 'opacity-100'}`}
         style={{
@@ -74,7 +81,10 @@ const FadeIn: Component<FadeInProps> = (props) => {
               style={{ 
                 width: `${SQUARE_SIZE}px`, 
                 height: `${SQUARE_SIZE}px`,
-                animation: isVisible() && !isResizing() ? `scaleIn 500ms ease-out forwards ${i * staggerDelay}ms` : 'none'
+                animation: isVisible() && !isResizing() 
+                  ? `scaleIn 500ms ease-out forwards ${i * staggerDelay}ms, 
+                     wave ${WAVE_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1) infinite ${i * (WAVE_DURATION / 50)}ms` 
+                  : 'none'
               }} 
             >
                 <img src={GOD} alt="Wise Mysitcal Tree" />
@@ -94,6 +104,14 @@ const FadeIn: Component<FadeInProps> = (props) => {
             to {
               opacity: 1;
               transform: scale(1);
+            }
+          }
+          @keyframes wave {
+            0%, 100% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.2);
             }
           }
         `}

@@ -3,18 +3,25 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		margin: 0;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-			"Helvetica Neue", sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+  html, body, #root {
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    padding: 0;
+  }
 
-		background-image: url("https://media1.tenor.com/m/p23bulsZsycAAAAC/tree-wise-mythical-tree.gif");
-		background-size: contain;
-	}
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	background-color: #141414;
+	/* ToDo: REMOVE THE LINE BELOW WHEN YOU DO SOMETHING REAL WITH THE SITE 🤣🤣 */
+	overflow: hidden; 
+  }
 
-	code {
-		font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-	}
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
 }

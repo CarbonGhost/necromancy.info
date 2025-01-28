@@ -1,0 +1,81 @@
+#glorp {
+    position: fixed;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 256px;
+    height: 256px;
+    animation: fadeIn 1500ms ease-in-out forwards;
+}
+
+#glorp img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 1));
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom center;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#glorp img:hover {
+    transform: scale(1.1);
+}
+
+#glorp img:active {
+    transform: scaleY(0.8);
+    animation: vibrate 0.1s linear infinite;
+    cursor: grabbing;
+}
+
+/* Glorp's beautiful voice creates waves that dance across the sky */
+#glorp.speaking::before,
+#glorp.speaking::after {
+    content: '';
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: soundWave 1s ease-out infinite;
+    z-index: -1;
+    opacity: 0;
+}
+
+#glorp.speaking::after {
+    animation-delay: 0.5s;
+}
+
+@keyframes vibrate {
+    0% { transform: scaleY(0.8) translate(1px, 1px); }
+    25% { transform: scaleY(0.8) translate(-1px, 1px); }
+    50% { transform: scaleY(0.8) translate(-1px, -1px); }
+    75% { transform: scaleY(0.8) translate(1px, -1px); }
+    100% { transform: scaleY(0.8) translate(1px, 1px); }
+}
+
+@keyframes soundWave {
+    0% {
+        width: 0%;
+        height: 0%;
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
